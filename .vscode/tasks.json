@@ -1,0 +1,77 @@
+{
+    // 1回だけpowershellを管理者で起動し、次のコマンドを入力
+    // Set-ExecutionPolicy RemoteSigned
+    //
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Quartus > Analysis & Elaboration",
+            "type": "shell",
+            "command": "./bin/setAsTopLevelEntity.bat ${fileBasename} ${workspaceFolderBasename}; quartus_map --analysis_and_elaboration ${file} -c ${workspaceFolderBasename}; ${fileDirname}/bin/makesimulationScript.ps1 ${file} ${workspaceFolderBasename}",
+            "problemMatcher": [
+                {
+                    "owner": "vhd",
+                    "fileLocation": "absolute",
+                    "pattern": {
+                        "regexp": "^\\s*(Error|Warning) \\(\\d+\\): (.*) File: (.*) Line: (\\d+)$",
+                        "file": 3,
+                        "line": 4,
+                        "message": 2,
+                        "severity": 1
+                    }
+                }
+            ],
+            "presentation": {
+                "revealProblems": "onProblem"
+            },
+            "group": "build"
+        },
+        {
+            "label": "Quartus > Remove Current File from Project",
+            "type": "shell",
+            "command": "./bin/removefromproject.bat ${fileBasename} ${workspaceFolderBasename}"
+        },
+        {
+            "label": "Quartus > Netlist Viewer",
+            "type": "shell",
+            "command": "quartus_npp ${file} -c ${workspaceFolderBasename} --netlist_type=sgate; qnui ${fileDirname}/${fileBasenameNoExtension}",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            }
+        },
+        {
+            "label": "Quartus > Run Questa Simulator",
+            "type": "shell",
+            "command": "cd ${fileDirname}\\simulation\\questa; vsim -do \\\"do run_${workspaceFolderBasename}.do\\\"",
+            "problemMatcher": [],
+            "group": {
+                "kind": "test",
+                "isDefault": false
+            }
+        },
+        {
+            "label": "Quartus > Program for configuration",
+            "type": "shell",
+            "command": "quartus_pgm --cable=\\\"USB-Blaster [USB-0]\\\" --mode=jtag -o \\\"p;output_files/LogicDesign.sof\\\"",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            }
+        },
+        {
+            "label": "Quartus > Compile",
+            "type": "shell",
+            "command": "./bin/setAsTopLevelEntity.bat ${fileBasename} ${workspaceFolderBasename}; quartus_sh --flow compile ${workspaceFolderBasename}",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            }
+        }
+    ]
+}

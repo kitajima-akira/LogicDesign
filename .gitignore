@@ -1,0 +1,14 @@
+#
+**/db/
+incremental_db/
+output_files/
+*.qpf
+transcript
+
+simulation/questa/LogicDesign.*
+simulation/questa/rtl_work/
+simulation/questa/modelsim.ini
+simulation/questa/run_LogicDesign.do
+simulation/questa/*.txt
+simulation/questa/vsim.wlf
+simulation/questa/wlft*
