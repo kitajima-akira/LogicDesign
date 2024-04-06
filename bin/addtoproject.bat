@@ -2,8 +2,8 @@
 @REM addtoproject.bat - ファイルをプロジェクトに登録する。
 
 @REM 引数のチェック
-if %2 == "" (
-    echo %~d0 file-name project-name
+if "%2" == "" (
+    echo %~n0 file-name project-name
     exit 1
 )
 

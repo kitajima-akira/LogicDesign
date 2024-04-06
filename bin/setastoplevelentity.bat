@@ -4,7 +4,7 @@
 
 @REM 引数のチェック
 if "%2" == "" (
-    echo %~dp0 %~n0 file-name project-name
+    echo %~n0 file-name project-name
     exit 1
 )
 
