@@ -9,7 +9,7 @@
         {
             "label": "Quartus > Analysis & Elaboration",
             "type": "shell",
-            "command": "./bin/setAsTopLevelEntity.bat ${fileBasename} ${workspaceFolderBasename}; quartus_map --analysis_and_elaboration ${file} -c ${workspaceFolderBasename}; ${fileDirname}/bin/makesimulationScript.ps1 ${file} ${workspaceFolderBasename}",
+            "command": "./bin/setAsTopLevelEntity.bat ${fileBasename} ${workspaceFolderBasename}; if ($?) {quartus_map --analysis_and_elaboration ${file} -c ${workspaceFolderBasename}; ${fileDirname}/bin/makesimulationScript.ps1 ${file} ${workspaceFolderBasename}}",
             "problemMatcher": [
                 {
                     "owner": "vhd",

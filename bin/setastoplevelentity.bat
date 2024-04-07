@@ -17,26 +17,28 @@ set PROJECT_FILE=%FILE_DIR_NAME%%PROJECT_NAME%.qsf
 @REM ファイルの存在チェック
 if not exist %PROJECT_FILE% (
     echo No project file: %PROJECT_FILE%
-    exit 1
+    exit /b 1
 )
 
 if not exist %FILE_NAME% (
     echo No source file: %FILE_NAME%
-    exit 1
+    exit /b 1
 )
 
 if not "%~x1" == ".vhd" (
     echo not a VHDL file: %FILE_NAME%
-    exit 1
+    exit /b 1
 )
 
-@REM ENTRY1が登録済みかどうかの確認
-set ENTRY1="set_global_assignment -name VHDL_FILE %FILE_NAME%"
+@REM VHDLファイルのクリーナップ (存在するファイルだけ用いる)
+set ENTRY_VHDL_FILE="set_global_assignment -name VHDL_FILE"
+set TMPFILE=%FILE_DIR_NAME%%PROJECT_NAME%.tmp
+findstr /V /C:%ENTRY_VHDL_FILE% %PROJECT_FILE% > %TMPFILE%
+del %PROJECT_FILE%
+rename %TMPFILE% *.qsf
 
-findstr /C:%ENTRY1% %PROJECT_FILE% > NUL
-if not %ERRORLEVEL% == 0 (
-    @REM ENTRY1を登録
-    echo %ENTRY1:~1,-1% >> %PROJECT_FILE%
+for %%f in (*.vhd) DO (
+    echo set_global_assignment -name VHDL_FILE %%f >> %PROJECT_FILE%
 )
 
 @REM ENTRY2が登録済みかどうかの確認

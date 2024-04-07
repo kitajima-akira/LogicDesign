@@ -69,5 +69,5 @@ vsim -t 1ns -L rtl_work -L work -voptargs="+acc"  TB_$baseName
 add wave sim:/tb_$baseName/DUV/*
 view structure
 view signals
-run
+run 1000 ns
 "@ >> $scriptName
