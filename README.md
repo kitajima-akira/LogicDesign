@@ -30,6 +30,9 @@ LogicDesignの置き場所はC:\Users\学生番号\source\reposにしてくだ�
 LogicDesignではPowerShellスクリプトの実行を有効にする必要があります。
 
 ターミナルを管理者で開いて、以下を実行してください。
+ターミナルを管理者で開くには、Windowsのタククバーのスタートボタンを右クリックして「ターミナル(管理者)」を選びます。
+この際、設定によってはWindows Powershellではなくコマンドプロンプトになっていることがあります。
+その場合はコマンドプロンプトにpowershellと入力してから以下を実行してください。
 
     Set-ExecutionPolicy RemoteSigned
 
