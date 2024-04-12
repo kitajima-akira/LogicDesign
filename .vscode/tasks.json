@@ -9,7 +9,17 @@
         {
             "label": "Quartus > Analysis & Elaboration",
             "type": "shell",
-            "command": "./bin/setAsTopLevelEntity.bat ${fileBasename} ${workspaceFolderBasename}; if ($?) {quartus_map --analysis_and_elaboration ${file} -c ${workspaceFolderBasename}; ${fileDirname}/bin/makesimulationScript.ps1 ${file} ${workspaceFolderBasename}}",
+            "windows": {
+                "options": {
+                    "shell": {
+                        "executable": "powershell.exe"
+                    }
+                },
+            },
+            "command": [
+                "./bin/setAsTopLevelEntity.bat ${fileBasename} ${workspaceFolderBasename};",
+                "if ($?) {quartus_map --analysis_and_elaboration ${file} -c ${workspaceFolderBasename}; ${fileDirname}/bin/makesimulationScript.ps1 ${file} ${workspaceFolderBasename}}"
+            ],
             "problemMatcher": [
                 {
                     "owner": "vhd",
@@ -31,11 +41,25 @@
         {
             "label": "Quartus > Remove Current File from Project",
             "type": "shell",
+            "windows": {
+                "options": {
+                    "shell": {
+                        "executable": "powershell.exe"
+                    }
+                },
+            },
             "command": "./bin/removefromproject.bat ${fileBasename} ${workspaceFolderBasename}"
         },
         {
             "label": "Quartus > Netlist Viewer",
             "type": "shell",
+            "windows": {
+                "options": {
+                    "shell": {
+                        "executable": "powershell.exe"
+                    }
+                },
+            },
             "command": "quartus_npp ${file} -c ${workspaceFolderBasename} --netlist_type=sgate; qnui ${fileDirname}/${fileBasenameNoExtension}",
             "problemMatcher": [],
             "group": {
@@ -46,6 +70,13 @@
         {
             "label": "Quartus > Run Questa Simulator",
             "type": "shell",
+            "windows": {
+                "options": {
+                    "shell": {
+                        "executable": "powershell.exe"
+                    }
+                },
+            },
             "command": "cd ${fileDirname}\\simulation\\questa; vsim -do \\\"do run_${workspaceFolderBasename}.do\\\"",
             "problemMatcher": [],
             "group": {
@@ -56,6 +87,13 @@
         {
             "label": "Quartus > Program for configuration",
             "type": "shell",
+            "windows": {
+                "options": {
+                    "shell": {
+                        "executable": "powershell.exe"
+                    }
+                },
+            },
             "command": "quartus_pgm --cable=\\\"USB-Blaster [USB-0]\\\" --mode=jtag -o \\\"p;output_files/LogicDesign.sof\\\"",
             "problemMatcher": [],
             "group": {
@@ -66,7 +104,17 @@
         {
             "label": "Quartus > Compile",
             "type": "shell",
-            "command": "./bin/setAsTopLevelEntity.bat ${fileBasename} ${workspaceFolderBasename}; quartus_sh --flow compile ${workspaceFolderBasename}",
+            "windows": {
+                "options": {
+                    "shell": {
+                        "executable": "powershell.exe"
+                    }
+                },
+            },
+            "command": [
+                "./bin/setAsTopLevelEntity.bat ${fileBasename} ${workspaceFolderBasename};",
+                "quartus_sh --flow compile ${workspaceFolderBasename}"
+            ],
             "problemMatcher": [],
             "group": {
                 "kind": "build",
