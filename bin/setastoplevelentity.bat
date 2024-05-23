@@ -41,6 +41,28 @@ for %%f in (*.vhd) DO (
     echo set_global_assignment -name VHDL_FILE %%f >> %PROJECT_FILE%
 )
 
+@REM Verilogファイルのクリーナップ (存在するファイルだけ用いる)
+set ENTRY_VERILOG_FILE="set_global_assignment -name VERILOG_FILE"
+set TMPFILE=%FILE_DIR_NAME%%PROJECT_NAME%.tmp
+findstr /V /C:%ENTRY_VERILOG_FILE% %PROJECT_FILE% > %TMPFILE%
+del %PROJECT_FILE%
+rename %TMPFILE% *.qsf
+
+for %%f in (*.v) DO (
+    echo set_global_assignment -name VERILOG_FILE %%f >> %PROJECT_FILE%
+)
+
+@REM System Verilogファイルのクリーナップ (存在するファイルだけ用いる)
+set ENTRY_SYSTEMVERILOG_FILE="set_global_assignment -name SYSTEMVERILOG_FILE"
+set TMPFILE=%FILE_DIR_NAME%%PROJECT_NAME%.tmp
+findstr /V /C:%ENTRY_SYSTEMVERILOG_FILE% %PROJECT_FILE% > %TMPFILE%
+del %PROJECT_FILE%
+rename %TMPFILE% *.qsf
+
+for %%f in (*.sv) DO (
+    echo set_global_assignment -name SYSTEMVERILOG_FILE %%f >> %PROJECT_FILE%
+)
+
 @REM ENTRY2が登録済みかどうかの確認
 set ENTRY2="set_global_assignment -name TOP_LEVEL_ENTITY %FILE_BASE_NAME%"
 
