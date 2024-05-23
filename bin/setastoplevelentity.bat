@@ -25,8 +25,15 @@ if not exist %FILE_NAME% (
     exit /b 1
 )
 
-if not "%~x1" == ".vhd" (
-    echo not a VHDL file: %FILE_NAME%
+@REM 対応する拡張子かチェック
+if "%~x1" == ".vhd" (
+    rem do nothing
+) else if "%~x1" == ".v" (
+    rem do nothing
+) else if "%~x1" == ".sv" (
+    rem do nothing
+) else (
+    echo Unsupported file: %FILE_NAME%
     exit /b 1
 )
 
