@@ -15,12 +15,15 @@ gitコマンドがインストールされていない場合は、[Gitのイン�
 
 ### LogicDesignパッケージのインストール
 
-これは演習の作業フォルダになります。
+GitHubを使用している(アカウントを持っている)場合、LogicDesignのリポジトリをコピーしてから使用するといいでしょう。
+その場合は[テンプレートからリポジトリを作成する](https://docs.github.com/ja/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template)を見てください。
+
+LogicDesignは演習のワークスペース(作業フォルダ)になります。
 LogicDesignの置き場所はC:\Users\学生番号\source\reposにしてください。
 他のフォルダにすると問題が起こる場合があります。
 
 エクスプローラーで C:\Users\学生番号\source\repos を開いて、アドレスバーにpowershellと入力することで、Powershellのターミナルが開きます。
-そこに以下を入力してください。
+そこに以下を入力してください。(自分のレポジトリにコピーした場合はそこを指定します。)
 
     git clone https://github.com/kitajima-akira/LogicDesign.git
 
