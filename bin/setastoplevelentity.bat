@@ -5,7 +5,7 @@
 @REM 引数のチェック
 if "%2" == "" (
     echo %~n0 file-name project-name
-    exit 1
+    exit /b 1
 )
 
 set FILE_NAME=%1
@@ -37,38 +37,10 @@ if "%~x1" == ".vhd" (
     exit /b 1
 )
 
-@REM VHDLファイルのクリーナップ (存在するファイルだけ用いる)
-set ENTRY_VHDL_FILE="set_global_assignment -name VHDL_FILE"
-set TMPFILE=%FILE_DIR_NAME%%PROJECT_NAME%.tmp
-findstr /V /C:%ENTRY_VHDL_FILE% %PROJECT_FILE% > %TMPFILE%
-del %PROJECT_FILE%
-rename %TMPFILE% *.qsf
-
-for %%f in (*.vhd) DO (
-    echo set_global_assignment -name VHDL_FILE %%f >> %PROJECT_FILE%
-)
-
-@REM Verilogファイルのクリーナップ (存在するファイルだけ用いる)
-set ENTRY_VERILOG_FILE="set_global_assignment -name VERILOG_FILE"
-set TMPFILE=%FILE_DIR_NAME%%PROJECT_NAME%.tmp
-findstr /V /C:%ENTRY_VERILOG_FILE% %PROJECT_FILE% > %TMPFILE%
-del %PROJECT_FILE%
-rename %TMPFILE% *.qsf
-
-for %%f in (*.v) DO (
-    echo set_global_assignment -name VERILOG_FILE %%f >> %PROJECT_FILE%
-)
-
-@REM System Verilogファイルのクリーナップ (存在するファイルだけ用いる)
-set ENTRY_SYSTEMVERILOG_FILE="set_global_assignment -name SYSTEMVERILOG_FILE"
-set TMPFILE=%FILE_DIR_NAME%%PROJECT_NAME%.tmp
-findstr /V /C:%ENTRY_SYSTEMVERILOG_FILE% %PROJECT_FILE% > %TMPFILE%
-del %PROJECT_FILE%
-rename %TMPFILE% *.qsf
-
-for %%f in (*.sv) DO (
-    echo set_global_assignment -name SYSTEMVERILOG_FILE %%f >> %PROJECT_FILE%
-)
+@REM プロジェクトファイルのクリーナップ (存在するファイルだけ用いる)
+call :CLEANUP_PROJECT VHDL_FILE .vhd
+call :CLEANUP_PROJECT VERILOG_FILE .v
+call :CLEANUP_PROJECT SYSTEMVERILOG_FILE .sv
 
 @REM ENTRY2が登録済みかどうかの確認
 set ENTRY2="set_global_assignment -name TOP_LEVEL_ENTITY %FILE_BASE_NAME%"
@@ -95,3 +67,30 @@ if not %ERRORLEVEL% == 0 (
     echo %ENTRY2:~1,-1% >> %PROJECT_FILE%
     endlocal
 )
+exit /b 0
+
+@REM =========================================================
+:CLEANUP_PROJECT
+@REM %1 ファイルタイプの文字列
+@REM %2 拡張子 
+@REM プロジェクトファイルから不要なエントリ(存在しないファイル)を削除する。
+
+@REM System Verilogファイルのクリーナップ (存在するファイルだけ用いる)
+set FILE_ENTRY="set_global_assignment -name %1"
+set TMPFILE=%FILE_DIR_NAME%%PROJECT_NAME%.tmp
+findstr /V /C:%FILE_ENTRY% %PROJECT_FILE% > %TMPFILE%
+@REM 削除されたエントリがあればプロジェクトファイルを更新する。
+fc %PROJECT_FILE% %TMPFILE% > NUL
+if %ERRORLEVEL% == 0 (
+    del %TMPFILE
+) else (
+    del %PROJECT_FILE%
+    rename %TMPFILE% *.qsf
+)
+
+if exist *%2 (
+    for %%f in (*%2) DO (
+        echo set_global_assignment -name %1 %%f >> %PROJECT_FILE%
+    )
+)
+exit /b
