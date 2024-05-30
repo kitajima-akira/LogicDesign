@@ -39,18 +39,6 @@
             "group": "build"
         },
         {
-            "label": "Quartus > Remove Current File from Project",
-            "type": "shell",
-            "windows": {
-                "options": {
-                    "shell": {
-                        "executable": "powershell.exe"
-                    }
-                },
-            },
-            "command": "./bin/removefromproject.bat ${fileBasename} ${workspaceFolderBasename}"
-        },
-        {
             "label": "Quartus > Netlist Viewer",
             "type": "shell",
             "windows": {
