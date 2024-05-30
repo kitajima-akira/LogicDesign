@@ -60,10 +60,30 @@ Select-String -path $projectFileName "VHDL_FILE" `
     | ForEach-Object -Process { $_ -replace "^.+VHDL_FILE (?<filename>[\w_.]+).*$", `
                                     "vcom -93 -work work {$directoryName\`${filename}}"} >> $scriptName
 
-$baseName = (Split-Path -Leaf $fileName) -replace "(?<basename>).vhd", '${basename}'
+Select-String -path $projectFileName "VERILOG_FILE" `
+    | ForEach-Object -Process { $_ -replace "^.+VERILOG_FILE (?<filename>[\w_.]+).*$", `
+                                    "vlog -work work {$directoryName\`${filename}}"} >> $scriptName
 
+Select-String -path $projectFileName "SYSTEMVERILOG_FILE" `
+    | ForEach-Object -Process { $_ -replace "^.+SYSTEMVERILOG_FILE (?<filename>[\w_.]+).*$", `
+                                    "vlog -sv -work work {$directoryName\`${filename}}"} >> $scriptName
+
+# テストベンチファイルを追加する。
+#$baseName = (Split-Path -Leaf $fileName) -replace "(?<basename>).vhd", '${basename}'
+$file = (Get-Item $fileName)
+$basename = $file.Basename
+$extension = $file.Extension
+
+if ($extension -eq ".vhd") {
+    Write-output "vcom -93 -work work {$simulationDirectory\tb_$baseName.vhd}" >> $scriptName
+} elseif ($extension -eq ".v") {
+    Write-output "vlog -work work {$simulationDirectory\tb_$baseName.v}" >> $scriptName
+} elseif ($extension -eq ".sv") {
+    Write-output "vlog -sv -work work {$simulationDirectory\tb_$baseName.sv}" >> $scriptName
+}
+
+# スクリプトの残りを追加する。
 Write-output @"
-vcom -93 -work work {$simulationDirectory\tb_$baseName.vhd}
 
 vsim -t 1ns -L rtl_work -L work -voptargs="+acc"  TB_$baseName
 add wave sim:/tb_$baseName/DUV/*
