@@ -82,7 +82,7 @@ findstr /V /C:%FILE_ENTRY% %PROJECT_FILE% > %TMPFILE%
 @REM 削除されたエントリがあればプロジェクトファイルを更新する。
 fc %PROJECT_FILE% %TMPFILE% > NUL
 if %ERRORLEVEL% == 0 (
-    del %TMPFILE
+    del %TMPFILE%
 ) else (
     del %PROJECT_FILE%
     rename %TMPFILE% *.qsf
