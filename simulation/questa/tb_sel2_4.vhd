@@ -20,7 +20,7 @@ end component SEL2_4;
 
 -- 複数のアーキテクチャがある場合にどちらにするのかを指定する。
 for DUV: SEL2_4 -- インスタンス名: エンティティ名
-	use entity WORK.SEL2_4(LOGIC);  -- 論理記述
+	use entity WORK.SEL2_4(LOGIC_VECTOR);  -- 論理記述
 --	use entity WORK.SEL2_4(BEHAVIOR);  -- 動作記述
 
 -- テスト対象回路の入出力用信号
