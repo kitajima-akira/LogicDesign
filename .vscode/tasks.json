@@ -65,7 +65,7 @@
                     }
                 },
             },
-            "command": "cd ${fileDirname}\\simulation\\questa; vsim -do \\\"do run_${workspaceFolderBasename}.do\\\"",
+            "command": "cd ${fileDirname}\\simulation\\questa; vsim -do \\\"do run_${workspaceFolderBasename}.do\\\"; del wlf*",
             "problemMatcher": [],
             "group": {
                 "kind": "test",
