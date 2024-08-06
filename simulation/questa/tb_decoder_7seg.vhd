@@ -21,19 +21,24 @@ component DECODER_7SEG is
 	);
 end component DECODER_7SEG;
 
+-- 複数のアーキテクチャがある場合にどちらにするのかを指定する。
+for DUV: DECODER_7SEG -- インスタンス名: エンティティ名
+	use entity WORK.DECODER_7SEG(DATAFLOW);  -- テーブル記述
+--	use entity WORK.DECODER_7SEG(LOGIC);  -- 論理記述
+
 signal D: std_logic_vector(3 downto 0) := "0000";  -- 数値
 signal Y: std_logic_vector(6 downto 0);  -- 点灯パターン
 
 begin
-
 	SIM_DATA_IO: process
 	file TEST_OUT: text open write_mode is OUTPUT_FILE;
 	variable LINE_OUT: line;
+	variable SEPARATOR: character := ':';
 	begin
 		wait for 10 ns;
 		-- 1周期分の動作 (繰り返し実行される。)
-
 		write(LINE_OUT, D, right, 8);
+		write(LINE_OUT, SEPARATOR);
 		write(LINE_OUT, Y, right, 8);
 		writeline(TEST_OUT, LINE_OUT);
 

@@ -1,0 +1,55 @@
+/* disp7seg.css - disp7seg.js用スタイルファイル
+ *
+ * Author: KITAJIMA Akira <kitajima@osakac.ac.jp>
+ * Copyright 2024 KITAJIMA Akira
+ */
+
+body,
+button {
+    color: rgb(225, 250, 253);
+    font-family: "Yu Gothic", sans-serif;
+    font-size: large;
+    background-color: rgb(2, 34, 43);
+}
+
+button {
+    margin: 5px;
+    border: none;
+    border-radius: 5em;
+    box-shadow: 3px 3px 5px black;
+    padding: 4px 15px 1px 15px;
+    width: 6em;
+}
+
+button:hover {
+    transition: 0.2s;
+    background-color: rgb(32, 64, 73);
+}
+
+button:active {
+    box-shadow: 0px 0px 5px black;
+    transform: translateY(4px);
+}
+
+td {
+    text-align: right;
+    font-weight: normal;
+    border-width: 1px;
+    border-color: rgb(225, 250, 253);
+}
+
+th {
+    text-align: right;
+    font-weight: normal;
+}
+
+caption {
+    color: rgb(2, 34, 43);
+    background-color: rgb(225, 250, 253);
+}
+
+table {
+    border: solid;
+    border-width: 1px;
+    border-color: rgb(225, 250, 253);
+}
