@@ -86,7 +86,7 @@ if ($extension -eq ".vhd") {
 Write-output @"
 
 vsim -t 1ns -L rtl_work -L work -voptargs="+acc"  TB_$baseName
-add wave sim:/tb_$baseName/DUV/*
+add wave sim:/TB_$baseName/DUV/*
 view structure
 view signals
 run 1000 ns
