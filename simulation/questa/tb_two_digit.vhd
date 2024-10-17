@@ -29,12 +29,14 @@ begin
 	SIM_DATA_IO: process
 	file TEST_OUT: text open write_mode is OUTPUT_FILE;
 	variable LINE_OUT: line;
+	variable SEPARATOR: character := ':';
 	begin
 		wait for 10 ns;
 		-- 1周期分の動作 (繰り返し実行される。)
 
 		write(LINE_OUT, A, right, 8);
 		write(LINE_OUT, B, right, 8);
+		write(LINE_OUT, SEPARATOR);
 		write(LINE_OUT, YA, right, 8);
 		write(LINE_OUT, YB, right, 8);
 		writeline(TEST_OUT, LINE_OUT);
