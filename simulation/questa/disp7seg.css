@@ -12,6 +12,9 @@ button {
     background-color: rgb(2, 34, 43);
 }
 
+.odd-column {
+    background-color: rgb(32, 64, 73);
+}
 button {
     margin: 5px;
     border: none;

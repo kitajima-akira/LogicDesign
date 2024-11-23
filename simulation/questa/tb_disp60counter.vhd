@@ -52,6 +52,7 @@ begin
 	SIM_MAIN: process
 	file TEST_OUT: text open write_mode is OUTPUT_FILE;
 	variable LINE_OUT: line;
+	variable SEPARATOR: character := ':';
 
 	begin
 		wait for CLK_CYCLE;
@@ -59,10 +60,11 @@ begin
 		-- ***検証対象回路のコンポーネントから得られたデータをファイルへ出力する。***
 --		write(LINE_OUT, now, right, 6);
 		write(LINE_OUT, CLEAR, right, 2);
-		write(LINE_OUT, SSL1, right, 8);
 		write(LINE_OUT, CNT, right, 2);
+		write(LINE_OUT, SEPARATOR);
+		write(LINE_OUT, SSL1, right, 8);
 		write(LINE_OUT, SSL0, right, 8);
-		writeline(TEST_OUT, LINE_OUT);
+		writeLine(TEST_OUT, LINE_OUT);
 	end process;
 
 	-- ***検証対象回路のコンポーネントを用意する。***

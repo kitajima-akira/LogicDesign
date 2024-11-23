@@ -114,14 +114,14 @@ class SSDArray {
     id="${prefix + i}"
     xmlns="http://www.w3.org/2000/svg">
 
-    <polygon class="segment1" points="26.5, 17  24.5, 19.5  15, 69  20.5, 74.5  28, 68.5  35.5, 27"/>
-    <polygon class="segment2" points="20, 77  13, 83.5  4.5, 130  6, 135  17.5, 126.5  25, 83"/>
-    <polygon class="segment6" points="31.5, 13.5  28, 15.5  37, 25.5  82.5, 25.5  94, 16.5  90, 14"/>
-    <polygon class="segment0" points="29, 70  21.5, 76  27, 82.5  73, 82.5  80, 76.5  75, 70"/>
-    <polygon class="segment3" points="19.5, 127.5  7.5, 137  11.5, 139.5  68.5, 139.5  73, 137.5  64, 127.5"/>
-    <polygon class="segment5" points="95.5, 17.5  84, 27  76.5, 69  81.5, 75.5  88.5, 69.5 97, 23.5"/>
-    <polygon class="segment4" points="81, 78  74, 84  66, 126.5  74.5, 136  76.5, 134.5  85.5, 84"/>
-    <circle class="segment7" fill="rgb(146, 146, 126)" cx="89" cy="134" r="6"/>
+    <polygon class="segment1" points="26.5, 17  24.5, 19.5  15, 69  20.5, 74.5  28, 68.5  35.5, 27" stroke="black" stroke-opacity="20%" />
+    <polygon class="segment2" points="20, 77  13, 83.5  4.5, 130  6, 135  17.5, 126.5  25, 83" stroke="black" stroke-opacity="20%" />
+    <polygon class="segment6" points="31.5, 13.5  28, 15.5  37, 25.5  82.5, 25.5  94, 16.5  90, 14" stroke="black" stroke-opacity="20%" />
+    <polygon class="segment0" points="29, 70  21.5, 76  27, 82.5  73, 82.5  80, 76.5  75, 70" stroke="black" stroke-opacity="20%" />
+    <polygon class="segment3" points="19.5, 127.5  7.5, 137  11.5, 139.5  68.5, 139.5  73, 137.5  64, 127.5" stroke="black" stroke-opacity="20%" />
+    <polygon class="segment5" points="95.5, 17.5  84, 27  76.5, 69  81.5, 75.5  88.5, 69.5 97, 23.5" stroke="black" stroke-opacity="20%" />
+    <polygon class="segment4" points="81, 78  74, 84  66, 126.5  74.5, 136  76.5, 134.5  85.5, 84" stroke="black" stroke-opacity="20%" />
+    <circle class="segment7" fill="rgb(146, 146, 126)" cx="89" cy="134" r="6" stroke="black" stroke-opacity="20%" />
 </svg>`;
         }
         this.ssdArray = [];
@@ -177,7 +177,7 @@ class Emulator {
         if (data === undefined)
             return;
         this.ssdArray.update(data.values);
-        this.inputDisplayArea.innerHTML = this.formatInput(data.input);
+        this.inputDisplayArea.innerHTML = `<p>#${this.currentTime}</p>` + this.formatInput(data.input);
     }
 
     /**
@@ -218,7 +218,7 @@ let emulator;  // エミュレータオブジェクト
  * @returns 符号付き10進表現の値
  */
 function getTwosComplement(binaryText) {
-    if (binaryText[0] === '0')  // 正の数
+    if (binaryText[0] === '0' || binaryText.length === 1)  // 正の数または1ビット
         return parseInt(binaryText, 2);
 
     // 以下、負の数の場合
@@ -251,7 +251,7 @@ function formatInput(inputText) {
             {index: "10進表現", data: decimalValues}, 
             {index: "2の補数", data: twosComplementValues} 
         ].reduce((s, r) => `${s}<tr><th>${r.index}</th>${
-                r.data.reduce((s, value) => `${s}<td>${value}</td>`, '')
+                r.data.reduce((s, value, i) => `${s}<td class="${i % 2 ? 'even-column' : 'odd-column'}">${value}</td>`, '')
             }</tr>`, 
             '');
 
