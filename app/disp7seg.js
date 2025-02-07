@@ -334,53 +334,7 @@ const navigationAuto = document.getElementById('navigation#auto');
 navigationAuto.addEventListener('click', toggleAuto);
 toggleAuto();
 
-// //////////////////////////////////
-// ファイルドロップ (データを読み込む。)
-
-/**
- * ドロップされたときの処理を行う。
- * @param {*} event イベント
- */
-function handleFiles(event) {
-	if (event !== undefined && event.dataTransfer !== undefined) {
-		event.stopPropagation();
-		event.preventDefault();
-
-        // テキストをドロップした場合
-		const text = event.dataTransfer.getData('text/plain');
-		if (text !== '') {
-            // ドロップされたテキストで初期化する。
-            initialize(text);
-			return;
-		}
-
-        // ファイルをドロップした場合
-        const file = event.dataTransfer.files[0];
-        if (file !== undefined) {
-            // ドロップされたファイルを読み込む。
-            const reader = new FileReader();
-            reader.addEventListener('load', event => initialize(reader.result));
-            reader.readAsText(file);
-        }
-    }
-}
-
-// ドラッグ&ドロップ
-// https://web.dev/articles/read-files
-
-/**
- * ドロップ操作を行えるようドラッグオーバー時に対応する。
- * @param {*} event イベント
- */
-function handleDragOver(event) {
-	event.stopPropagation();
-	event.preventDefault();
-	event.dataTransfer.dropEffect = 'copy'; // Explicitly show this is a copy.
-}
-
-// Setup the dnd listeners.
-document.addEventListener('dragover', handleDragOver, false);
-document.addEventListener('drop', handleFiles, false);
+document.addEventListener('drop', event => inputByDrop(event, initialize), false);
 
 // ////////////////////////
 // タイマー (自動更新する。)
