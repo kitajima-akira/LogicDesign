@@ -41,12 +41,24 @@ LogicDesignではPowerShellスクリプトの実行を有効にする必要が�
 
 ## Visual Studio Codeの設定
 
-### 拡張機能のインストール
+### 拡張機能のインストールと設定
 1. Visual Studio Codeを起動し、画面左側の縦に並んでいるアイコンから「拡張機能」(マウスカーソルをアイコンに重ねたら表示されます)をクリックします。
 
 1. 押したアイコンの右横エリアの上部にある「Marketplaceで拡張機能を検索する」の部分に「TerosHDL」と入力します。
 
 1. 「TerosHDL」のインストールを押します。
+
+1. 左側の縦に並んでいるアイコンの中にあるTerosHDLのアイコンをクリックします。
+
+1. 下の方にスクロールしていき、「CONFIGURATION」の中の「Open Global Settings Menu」をクリックします。
+
+1. 「Linter settings」をクリックしてVerilog/SV linterの部分で「Icarus」を選択します。
+
+1. 左側の「Icarus linter」をクリックしてArgumentsの部分に「-g 2012 -Y .sv -y . -y ..\\..」と入力します。
+
+1. 左側の「Schematic viewer」をクリックしてSelect the backendの部分で「YoWASP (Only Verilog/SV)」を選択します。
+
+1. 画面下にある「Apply and close」ボタンを押します。
 
 ### おすすめのVisual Studio Codeフォント設定 (任意)
 この設定は必ず行わないといけないわけではありませんが、おすすめの設定ですので、内容を理解して、設定してもよいと思ったら是非行ってください。
