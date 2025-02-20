@@ -1,0 +1,47 @@
+<!-- karnaughmap.html - karnaughmap.jsのエントリポイント 
+
+  Author: KITAJIMA Akira <kitajima@osakac.ac.jp>
+  Copyright 2025 KITAJIMA Akira -->
+
+<!doctype html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>Karnaugh Map</title>
+  <link href="../app/karnaughmap.css" rel="stylesheet" />
+</head>
+
+<body>
+  <h1>カルノー図表示ツール</h1>
+  <h2>用いるデータ</h2>
+  <p>専用のシミュレーションを実行することで、表示用データが生成されます。
+    例えば、<i>example</i>.svをシミュレーションすると、<i>example</i>.txtがフォルダkarnaughmapに生成されます。
+  </p>
+  <p>ファイルの内容は次のようになっていて、左側が入力、右側が出力です。出力は1ビットずつ独立して表示されます。</p>
+  <pre>
+0000 01
+0001 10
+0010 01
+0011 10
+0100 00
+0101 01
+0110 10
+0111 11
+1000 01
+1001 10
+1010 01
+1011 10
+1100 00
+1101 01
+1110 10
+1111 11
+  </pre>
+  <h2>使い方</h2>
+  <p>表示用データファイルまたはテキストをこのページにドラッグアンドドロップしてください。</p>
+  <script src="../app/inputByDrop.js"></script>
+  <script src="../app/karnaughMap.js"></script>
+</body>
+
+</html>

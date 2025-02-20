@@ -1,0 +1,39 @@
+<!-- disp7seg.html - disp7seg.jsのエントリポイント 
+
+  Author: KITAJIMA Akira <kitajima@osakac.ac.jp>
+  Copyright 2024 KITAJIMA Akira -->
+
+<!doctype html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>disp7seg</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/snap.svg/0.5.1/snap.svg-min.js"></script>
+  <link href="../app/disp7seg.css" rel="stylesheet" />
+</head>
+
+<body>
+  <div id="drop-area">
+    <div id="display-area"></div>
+    <div id="input-display-area">
+      <h1>7セグメントLED表示ツール</h1>
+      <h2>用いるデータ</h2>
+      <p>専用のシミュレーションを実行することで、表示用データが生成されます。
+        例えば、<i>example</i>.svをシミュレーションすると、<i>example</i>.txtがフォルダdisp7segに生成されます。
+      </p>
+      <h2>使い方</h2>
+      <p>表示用データファイルまたはテキストをこのページにドラッグアンドドロップしてください。</p>
+    </div>
+    <div id="button-area">
+      <button id="navigation#prev" type="button"></button>
+      <button id="navigation#auto" type="button"></button>
+      <button id="navigation#next" type="button"></button>
+    </div>
+  </div>
+  <script src="../app/inputByDrop.js"></script>
+  <script src="../app/disp7seg.js"></script>
+</body>
+
+</html>

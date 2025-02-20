@@ -4,7 +4,11 @@ incremental_db/
 output_files/
 *.qpf
 !LogicDesign.qpf
+*.qdf
 transcript
+*.txt
+*.vcd
+a.out
 
 simulation/questa/LogicDesign.*
 simulation/questa/rtl_work/
