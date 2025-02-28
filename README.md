@@ -90,8 +90,8 @@ Visual Studio Codeの場合は、フォントをインストールしたら、Vi
   - Microsoftの最新のコーディング用フォントです。日本語対応も進められています。[Cascadia Next](https://github.com/microsoft/cascadia-code/releases/tag/cascadia-next)
 
 日本語の文字も含めたフォントもあります。
-- [プログラミングフォント 白源 (はくげん／HackGen)](https://github.com/yuru7/HackGen)
 - [yuru7](https://github.com/yuru7?tab=repositories)
+  - 様々なフォントを公開しています。各リポジトリを見てください。
 - [M+ FONTS | JAPANESE](https://mplusfonts.github.io/)
 - [フリーフォント (自家製フォント工房)](http://jikasei.me/font/#google_vignette)
 - [GitHub - edihbrandon/RictyDiminished: Ricty Diminished --- fonts for programming](https://github.com/edihbrandon/RictyDiminished)
