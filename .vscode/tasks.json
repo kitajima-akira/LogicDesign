@@ -48,7 +48,7 @@
                     }
                 },
             },
-            "command": "quartus_npp ${file} -c ${workspaceFolderBasename} --netlist_type=sgate; qnui ${fileDirname}/${fileBasenameNoExtension}",
+            "command": "quartus_npp ${file} -c ${workspaceFolderBasename} --netlist_type=sgate; qnui ${fileDirname}/${workspaceFolderBasename}",
             "problemMatcher": [],
             "group": {
                 "kind": "build",
