@@ -105,3 +105,10 @@ Visual Studio Codeの場合は、フォントをインストールしたら、Vi
   - 'Roboto Mono' [Roboto Mono - Google Fonts](https://fonts.google.com/specimen/Roboto+Mono)
 - ターミナル (実行結果等)
   - '源暎モノコード' [【フリーフォント】源暎モノゴ/モノコード - 御琥祢屋](https://okoneya.jp/font/genei-mono-go.html)
+
+## LogicDesignの更新
+
+Visual Studio Codeでターミナルを開き以下のコマンドを実行することで、最近のLogicDesignに更新することができます。
+
+    git fetch origin
+    git reset --hard origin/main
