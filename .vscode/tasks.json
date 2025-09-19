@@ -7,7 +7,26 @@
     "version": "2.0.0",
     "tasks": [
         {
+            "label": "LogicDesign: Update",
+            "detail": "LogicDesignを最新版に更新します。",
+            "type": "shell",
+            "windows": {
+                "options": {
+                    "shell": {
+                        "executable": "powershell.exe"
+                    }
+                },
+            },
+            "command": "git fetch origin; git reset --hard origin/main",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            }
+        },
+        {
             "label": "Quartus > Analysis & Elaboration",
+            "detail": "Quartusで文法のチェックを行います。",
             "type": "shell",
             "windows": {
                 "options": {
@@ -40,6 +59,7 @@
         },
         {
             "label": "Quartus > Netlist Viewer",
+            "detail": "Quartusで回路図を表示します。(事前にAnalysis & Elaborationが必要)",
             "type": "shell",
             "windows": {
                 "options": {
@@ -57,6 +77,7 @@
         },
         {
             "label": "Quartus > Run Questa Simulator",
+            "detail": "Questaシミュレータでシミュレーションを実行します。(事前にAnalysis & Elaborationが必要)",
             "type": "shell",
             "windows": {
                 "options": {
@@ -74,6 +95,7 @@
         },
         {
             "label": "Quartus > Program for configuration",
+            "detail": "回路データをFPGAボードに書き込みます。(事前にCompileが必要)",
             "type": "shell",
             "windows": {
                 "options": {
@@ -91,6 +113,7 @@
         },
         {
             "label": "Quartus > Compile",
+            "detail": "回路データを生成します。",
             "type": "shell",
             "windows": {
                 "options": {

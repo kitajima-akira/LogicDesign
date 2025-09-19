@@ -99,6 +99,7 @@ Visual Studio Codeの場合は、フォントをインストールしたら、Vi
 - [プログラミングフォント Myrica](https://myrica.estable.jp/)
 - [Miguフォント](https://itouhiro.github.io/mixfont-mplus-ipa/migu/)
 - [源暎フォント置き場 - 御琥祢屋](https://okoneya.jp/font/)
+- [プログラミング向きの日本語フォント集](https://zenn.dev/omonomo/articles/0ee3b1a8332c52)
 
 私は以下のフォントを使用しています。(授業での表示)
 - プログラム編集
@@ -108,7 +109,9 @@ Visual Studio Codeの場合は、フォントをインストールしたら、Vi
 
 ## LogicDesignの更新
 
-Visual Studio Codeでターミナルを開き以下のコマンドを実行することで、最近のLogicDesignに更新することができます。
+Visual Studio CodeでLogicDesignを開き、タスクの実行 > LogicDesign: Updateを実行することで最新版に更新することができます。
+
+また、ターミナルを開き以下のコマンドを実行することでも、最近のLogicDesignに更新することができます。
 
     git fetch origin
     git reset --hard origin/main
