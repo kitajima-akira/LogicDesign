@@ -1,9 +1,11 @@
 # FPGAボードの使い方チュートリアル
 この文書では、7セグメントLED表示回路(top_decoder_7seg)を例に、作成した回路のデータをFPGAボードDE10-Liteに送り、実行させるまでの手順を説明しています。
+
+Quartusがインストールされており、コマンド実行パスの設定もされていることを前提としています。
+
 ## ボードで自分の回路を動かす手順
 1. プログラミングファイルの作成  
-Visual Studio Codeでtop_decoder_7seg.svを表示し、Visual Studio Codeウインドウの最上部中央をクリックし、「*タスクの実行*」を選びます。*Quartus > Compile*タスクを実行することで、プログラミングファイル(LogicDesign/output_files/LogicDesign.sof)が生成されます。なお、プログラミングファイルには、作成した回路をFPGA上で動かすためのデータ(コンフィギュレーションビットストリーム)が格納されています。
-
+Visual Studio Codeでtop_decoder_7seg.svを表示し、Visual Studio Codeウインドウの最上部中央をクリックし、「*タスクの実行*」を選びます。*Quartus > Compile*タスクを実行することで、プログラミングファイル(LogicDesign/output_files/LogicDesign.sof)が生成されます。なお、プログラミングファイルには、作成した回路をFPGA上で動かすためのデータ(コンフィギュレーションビットストリーム)が格納されています。  
 もとの記述ファイル(decoder_7seg.svなど)を修正した場合は、もう一度上記の手順でプログラミングファイルを作り直す必要があります。
 
 2. ボードの接続と実行  
