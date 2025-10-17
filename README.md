@@ -27,7 +27,6 @@ LogicDesignの置き場所はC:\Users\学生番号\source\reposにしてくだ�
 
     git clone https://github.com/kitajima-akira/LogicDesign.git
 
-
 ### 実行のための設定
 
 LogicDesignではPowerShellスクリプトの実行を有効にする必要があります。
@@ -38,6 +37,18 @@ LogicDesignではPowerShellスクリプトの実行を有効にする必要が�
 その場合はコマンドプロンプトにpowershellと入力してから以下を実行してください。
 
     Set-ExecutionPolicy RemoteSigned
+
+### OSS CAD Suiteとの連携
+
+OSS CAD Suiteと連携するために、Visual Studio Codeを起動するときには、OSS CAD Suiteのstart.batを起動して表示されるターミナルに「code」と入力して起動する必要があります。次の設定を行うと、タスクバーのアイコンをクリックするだけでVisual Studio Codeを起動できます。
+
+1. LogicDesign\bin\start_code.batをOSS CAD Suiteのstart.batがあるフォルダにコピーする。
+2. コピーしたstart_code.batをWindowsのエクスプローラーで右クリック > その他のオプションを確認 > ショートカットの作成
+3. 作成されたショートカットを右クリック > その他のオプションを確認 > プロパティ
+4. 表示された「start_code.bat - ショートコットのプロパティ」のウィンドウの「リンク先」の部分について、元から入力されている文字列は消さずに、先頭に「explorer 」(末尾は空白文字)を追加する。
+5. 「アイコンの変更」ボタンを押し、「参照」からC:\Program Files\Microsoft VS CodeのCode.exeを選択し「開く」とし、アイコンを選んで「OK」
+6. プロパティのウィンドウの「OK」を押す。
+7. 「start_code.bat - ショートカット」をドラッグし、タスクバーにドロップする。
 
 ## Visual Studio Codeの設定
 
