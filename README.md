@@ -1,6 +1,7 @@
 # LogicDesign
 
-大阪電気通信大学総合情報学部情報学科の「論理回路」および「論理設計演習」で用います。
+LogicDesignはWindows環境での初学者向きのディジタル回路設計ワークスペースです。
+大阪電気通信大学総合情報学部情報学科の「論理回路」および「論理設計演習」で用いています。
 
 ## インストール・設定
 
@@ -52,7 +53,7 @@ OSS CAD Suiteと連携するために、Visual Studio Codeを起動するとき�
 
 ## Visual Studio Codeの設定
 
-### 拡張機能のインストールと設定
+### 拡張機能TerosHDLのインストールと設定
 1. Visual Studio Codeを起動し、画面左側の縦に並んでいるアイコンから「拡張機能」(マウスカーソルをアイコンに重ねたら表示されます)をクリックします。
 
 1. 押したアイコンの右横エリアの上部にある「Marketplaceで拡張機能を検索する」の部分に「TerosHDL」と入力します。
@@ -70,6 +71,13 @@ OSS CAD Suiteと連携するために、Visual Studio Codeを起動するとき�
 1. 左側の「Schematic viewer」をクリックしてSelect the backendの部分で「YoWASP (Only Verilog/SV)」を選択します。
 
 1. 画面下にある「Apply and close」ボタンを押します。
+
+### 拡張機能VaporViewのインストールと設定
+1. Visual Studio Codeの画面左側の縦に並んでいるアイコンから「拡張機能」をクリックします。
+
+1. 押したアイコンの右横エリアの上部にある「Marketplaceで拡張機能を検索する」の部分に「VaporView」と入力します。
+
+1. 「VaporView」のインストールを押します。
 
 ### おすすめのVisual Studio Codeフォント設定 (任意)
 この設定は必ず行わないといけないわけではありませんが、おすすめの設定ですので、内容を理解して、設定してもよいと思ったら是非行ってください。
