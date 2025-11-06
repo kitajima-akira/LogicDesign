@@ -51,9 +51,9 @@ OSS CAD Suiteと連携するために、Visual Studio Codeを起動するとき�
 6. プロパティのウィンドウの「OK」を押す。
 7. 「start_code.bat - ショートカット」をドラッグし、タスクバーにドロップする。
 
-## Visual Studio Codeの設定
+### Visual Studio Codeの設定
 
-### 拡張機能TerosHDLのインストールと設定
+#### 拡張機能TerosHDLのインストールと設定
 1. Visual Studio Codeを起動し、画面左側の縦に並んでいるアイコンから「拡張機能」(マウスカーソルをアイコンに重ねたら表示されます)をクリックします。
 
 1. 押したアイコンの右横エリアの上部にある「Marketplaceで拡張機能を検索する」の部分に「TerosHDL」と入力します。
@@ -72,62 +72,43 @@ OSS CAD Suiteと連携するために、Visual Studio Codeを起動するとき�
 
 1. 画面下にある「Apply and close」ボタンを押します。
 
-### 拡張機能VaporViewのインストールと設定
+#### 拡張機能VaporViewのインストールと設定
 1. Visual Studio Codeの画面左側の縦に並んでいるアイコンから「拡張機能」をクリックします。
 
 1. 押したアイコンの右横エリアの上部にある「Marketplaceで拡張機能を検索する」の部分に「VaporView」と入力します。
 
 1. 「VaporView」のインストールを押します。
 
-### おすすめのVisual Studio Codeフォント設定 (任意)
+#### おすすめのVisual Studio Codeフォント設定 (任意)
 この設定は必ず行わないといけないわけではありませんが、おすすめの設定ですので、内容を理解して、設定してもよいと思ったら是非行ってください。
 フォントにより見やすさがかなり変わりますので、適切に設定するとコーディング(プログラムを考えて入力する作業)の効率も上がります。
 
-#### 標準のフォントのみ使用する設定
+##### 標準のフォントのみ使用する設定
 Visual Studio Codeの画面左下にある歯車アイコン(設定)>設定で、次のように設定します。
  - Editor: Font Family ⇒ Consolas, ‘BIZ UDゴシック’, monospace
  - Terminal > Integrated: Font Family ⇒ ‘BIZ UDゴシック’, monospace
 
-#### フォントをインストールして使用する設定
-自分でフォントをインストールし、前節と同じ項目を変更します。
- - Editor: Font Family ⇒ Consolas, ‘BIZ UDゴシック’, monospace
+##### フォントをインストールして使用する設定
+よりよいフォントを見つけて設定することもできます。[Visual Studio Codeで使用するフォントを自分でインストールし使用するには](doc/additional_font.md)
 
-Consolasの部分を使いたいフォント名に変えます。名前の途中にスペースがある場合は’(シングルクォーテーション)で囲みます。
-- Terminal > Integrated: Font Family ⇒ ‘BIZ UDゴシック’, monospace
+## LogicDesignの機能
 
-‘BIZ UDゴシック’の前にフォント名を追加します。
+### 7セグメントLED表示シミュレーション
+HDLシミュレーションにより決まったフォーマットのデータを生成することで、7セグメントLEDでどのように表示されるのかブラウザで確認できます。
 
-コーディング作業に向いたフォントが多数考案されています。インストール方法は各サイトに書かれてある説明を見てください。基本的には、フォントファイルの.ttfをクリックして、フォント見本表示の右上の「インストール」を押せばWindows環境にインストールされ使用できるようになります。
+[disp7seg](disp7seg/disp7seg.html)
 
-Visual Studio Codeの場合は、フォントをインストールしたら、Visual Studio Codeも再起動しないと、設定を変更しただけでは正しく反映されない(新しいフォントに変わらない)ので注意してください。
+### カルノー図表示
+HDLシミュレーションにより決まったフォーマットのデータを生成することで、作成した回路の出力をカルノー図としてブラウザで確認できます。
 
-英数字のフォントは、以下のサイトを使用すると自分の好きなのが見つかりやすいでしょう。
+[karnaughmap](marnaughmap/karnaughmap.html)
 
-- [Coding Font](https://www.codingfont.com/)
-  - 英語のサイトですが、有名なコーディング用フォントを2種類ずつ比較して、トーナメント形式で自分の好きなのを選ぶことができます。
-- [Cascadia Code](https://github.com/microsoft/cascadia-code)
-  - Microsoftの最新のコーディング用フォントです。日本語対応も進められています。[Cascadia Next](https://github.com/microsoft/cascadia-code/releases/tag/cascadia-next)
+### FPGAボードの利用
+LogicDesignでは[Terasic社のFPGAボードDE10-lite](https://www.terasic.com.tw/cgi-bin/page/archive.pl?Language=English&CategoryNo=234&No=1021)を使って簡単に動作が確認できます。
 
-日本語の文字も含めたフォントもあります。
-- [yuru7](https://github.com/yuru7?tab=repositories)
-  - 様々なフォントを公開しています。各リポジトリを見てください。
-- [M+ FONTS | JAPANESE](https://mplusfonts.github.io/)
-- [フリーフォント (自家製フォント工房)](http://jikasei.me/font/#google_vignette)
-- [GitHub - edihbrandon/RictyDiminished: Ricty Diminished --- fonts for programming](https://github.com/edihbrandon/RictyDiminished)
-- [GitHub - miiton/Cica: プログラミング用日本語等幅フォント Cica(シカ)](https://github.com/miiton/Cica)
-- [プログラミングフォント Myrica](https://myrica.estable.jp/)
-- [Miguフォント](https://itouhiro.github.io/mixfont-mplus-ipa/migu/)
-- [源暎フォント置き場 - 御琥祢屋](https://okoneya.jp/font/)
-- [プログラミング向きの日本語フォント集](https://zenn.dev/omonomo/articles/0ee3b1a8332c52)
+[FPGAボードの使い方チュートリアル](doc/board_tutorial.md)
 
-私は以下のフォントを使用しています。(授業での表示)
-- プログラム編集
-  - 'Roboto Mono' [Roboto Mono - Google Fonts](https://fonts.google.com/specimen/Roboto+Mono)
-- ターミナル (実行結果等)
-  - '源暎モノコード' [【フリーフォント】源暎モノゴ/モノコード - 御琥祢屋](https://okoneya.jp/font/genei-mono-go.html)
-
-## LogicDesignの更新
-
+### LogicDesignの更新
 Visual Studio CodeでLogicDesignを開き、タスクの実行 > LogicDesign: Updateを実行することで最新版に更新することができます。
 
 また、ターミナルを開き以下のコマンドを実行することでも、最近のLogicDesignに更新することができます。
