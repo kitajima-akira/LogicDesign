@@ -101,7 +101,7 @@ HDLシミュレーションにより決まったフォーマットのデータ�
 ### カルノー図表示
 HDLシミュレーションにより決まったフォーマットのデータを生成することで、作成した回路の出力をカルノー図としてブラウザで確認できます。
 
-[karnaughmap](marnaughmap/karnaughmap.html)
+[karnaughmap](karnaughmap/karnaughmap.html)
 
 ### FPGAボードの利用
 LogicDesignでは[Terasic社のFPGAボードDE10-lite](https://www.terasic.com.tw/cgi-bin/page/archive.pl?Language=English&CategoryNo=234&No=1021)を使って簡単に動作が確認できます。
