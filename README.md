@@ -24,7 +24,7 @@ LogicDesignの置き場所はC:\Users\学生番号\source\reposにしてくだ�
 他のフォルダにすると問題が起こる場合があります。
 
 エクスプローラーで C:\Users\学生番号\source\repos を開いて、アドレスバーにpowershellと入力することで、Powershellのターミナルが開きます。
-そこに以下を入力してください。(自分のレポジトリにコピーした場合はそこを指定します。)
+そこに以下を入力してください。(自分のリポジトリにコピーした場合はそこを指定します。)
 
     git clone https://github.com/kitajima-akira/LogicDesign.git
 
@@ -72,12 +72,19 @@ OSS CAD Suiteと連携するために、Visual Studio Codeを起動するとき�
 
 1. 画面下にある「Apply and close」ボタンを押します。
 
-#### 拡張機能VaporViewのインストールと設定
+#### 拡張機能VaporViewのインストール
 1. Visual Studio Codeの画面左側の縦に並んでいるアイコンから「拡張機能」をクリックします。
 
 1. 押したアイコンの右横エリアの上部にある「Marketplaceで拡張機能を検索する」の部分に「VaporView」と入力します。
 
 1. 「VaporView」のインストールを押します。
+
+#### 拡張機能PowerShellのインストール
+1. Visual Studio Codeの画面左側の縦に並んでいるアイコンから「拡張機能」をクリックします。
+
+1. 押したアイコンの右横エリアの上部にある「Marketplaceで拡張機能を検索する」の部分に「PowerShell」と入力します。
+
+1. 「PowerShell」のインストールを押します。
 
 #### おすすめのVisual Studio Codeフォント設定 (任意)
 この設定は必ず行わないといけないわけではありませんが、おすすめの設定ですので、内容を理解して、設定してもよいと思ったら是非行ってください。
