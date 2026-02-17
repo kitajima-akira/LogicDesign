@@ -89,7 +89,8 @@ if %ERRORLEVEL% == 0 (
 )
 
 if exist *%2 (
-    for %%f in (*%2) DO (
+    @REM tb_で始まったり _tbで終わる名前は除外する。
+    for /f %%f in ('dir /B *%2 ^| findstr /V "^tb_" ^| findstr /V "_tb%2$"') do (
         echo set_global_assignment -name %1 %%f >> %PROJECT_FILE%
     )
 )

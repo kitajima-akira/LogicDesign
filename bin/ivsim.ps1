@@ -1,4 +1,4 @@
-# ivsim.ps1 - Icarus Verilogでシミュレーションを実行する。
+# ivsim.ps1 - Icarus VerilogでSystem Verilogのシミュレーションを実行する。
 
 # 引数のチェック
 param (
@@ -22,10 +22,18 @@ $PSDefaultParameterValues['Out-File:Encoding'] = 'ascii'
 $directoryName = Split-Path -Path $fileName
 # テスト対象モジュールの名前
 $moduleName = [System.IO.Path]::GetFileNameWithoutExtension($fileName)
+# テストベンチのモジュール名(_tb)の場合は元のモジュール名に戻す。
+if ( $moduleName -match '_tb$' ) {
+    $moduleName = $moduleName -replace "_tb$", ''
+    $fileName = "$moduleName.sv"
+    $directoryName = "."
+}
 # テストベンチモジュールの名前
 $testBenchName = "${moduleName}_tb"
 # テストベンチのファイル名
-$testBenchFileName = "$directoryName\$tbPath\$testBenchName.sv"
+$testBenchFileName = "$testBenchName.sv"
+# テストベンチの既定ディレクトリ名
+$defaultTestBenchDirectoryName = "$directoryName\$tbPath"
 # コンパイルされたデータ (Icarus Verilog)
 $compiledOutput = "$moduleName.out"
 
@@ -36,8 +44,11 @@ if (-not(Test-Path $fileName)) {
 }
 
 if (-not(Test-Path $testBenchFileName)) {
-    Write-Output "No test bench file: $testBenchFileName"
-    Exit-PSSession
+    $testBenchFileName = "$defaultTestBenchDirectoryName\$testBenchFileName"
+    if (-not(Test-Path $testBenchFileName)) {
+        Write-Output "No test bench file: $testBenchFileName"
+        Exit-PSSession
+    }
 }
 
 # シミュレーションの実行
