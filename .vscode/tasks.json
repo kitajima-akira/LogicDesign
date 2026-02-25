@@ -36,8 +36,8 @@
                 },
             },
             "command": [
-                "./bin/setAsTopLevelEntity.bat ${fileBasename} ${workspaceFolderBasename};",
-                "if ($?) {quartus_map --analysis_and_elaboration ${file} -c ${workspaceFolderBasename}; ${fileDirname}/bin/makesimulationScript.ps1 ${file} ${workspaceFolderBasename}}"
+                "./bin/setAsTopLevelEntity.bat ${file} ${workspaceFolderBasename};",
+                "if ($?) {quartus_map --analysis_and_elaboration ${file} -c ${workspaceFolderBasename}; ${workspaceFolder}/bin/makesimulationScript.ps1 ${file} ${workspaceFolderBasename}}"
             ],
             "problemMatcher": [
                 {
@@ -104,7 +104,10 @@
                     }
                 },
             },
-            "command": "quartus_pgm --cable=\\\"USB-Blaster [USB-0]\\\" --mode=jtag -o \\\"p;output_files/LogicDesign.sof\\\"",
+            "command": [
+                "cd ${fileDirname};",
+                "quartus_pgm --cable=\\\"USB-Blaster [USB-0]\\\" --mode=jtag -o \\\"p;output_files/LogicDesign.sof\\\""
+            ],
             "problemMatcher": [],
             "group": {
                 "kind": "build",
@@ -123,7 +126,8 @@
                 },
             },
             "command": [
-                "./bin/setAsTopLevelEntity.bat ${fileBasename} ${workspaceFolderBasename};",
+                "./bin/setAsTopLevelEntity.bat ${file} ${workspaceFolderBasename};",
+                "cd ${fileDirname};",
                 "quartus_sh --flow compile ${workspaceFolderBasename}"
             ],
             "problemMatcher": [],

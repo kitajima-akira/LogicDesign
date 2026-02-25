@@ -16,6 +16,7 @@ param (
 $PSDefaultParameterValues['Out-File:Encoding'] = 'ascii'
 
 $directoryName = Split-Path -Path $fileName
+$rootDirectory = (Get-Location).Path
 $projectFileName = $projectName + ".qsf"
 if ($directoryName) {
     $projectFileName = $directoryName + "\" + $projectFileName
@@ -33,9 +34,6 @@ if (-not(Test-Path $fileName)) {
 }
 
 $simulationDirectory = "simulation\questa"
-if ($directoryName) {
-    $simulationDirectory = $directoryName + "\" + $simulationDirectory
-}
 if (-not(Test-Path $simulationDirectory)) {
     Write-Output "No simulation folder: $simulationDirectory"
     Exit-PSSession
@@ -57,16 +55,16 @@ vmap work rtl_work
 
 # プロジェクトのファイルはすべて追加する。
 Select-String -path $projectFileName "VHDL_FILE" `
-    | ForEach-Object -Process { $_ -replace "^.+VHDL_FILE (?<filename>[\w_.]+).*$", `
-                                    "vcom -93 -work work {$directoryName\`${filename}}"} >> $scriptName
+    | ForEach-Object -Process { $_ -replace "^.+VHDL_FILE (?<filename>[\\\w_.]+)$", `
+                                    "vcom -93 -work work {$directoryName\`${filename}}" -replace "\\\\", "\" } >> $scriptName
 
-Select-String -path $projectFileName "VERILOG_FILE" `
-    | ForEach-Object -Process { $_ -replace "^.+VERILOG_FILE (?<filename>[\w_.]+).*$", `
-                                    "vlog -work work {$directoryName\`${filename}}"} >> $scriptName
+Select-String -path $projectFileName " VERILOG_FILE" `
+    | ForEach-Object -Process { $_ -replace "^.+VERILOG_FILE (?<filename>[\\\w_.]+)$", `
+                                    "vlog -work work {$directoryName\`${filename}}" -replace "\\\\", "\" } >> $scriptName
 
 Select-String -path $projectFileName "SYSTEMVERILOG_FILE" `
-    | ForEach-Object -Process { $_ -replace "^.+SYSTEMVERILOG_FILE (?<filename>[\w_.]+).*$", `
-                                    "vlog -sv -work work {$directoryName\`${filename}}"} >> $scriptName
+    | ForEach-Object -Process { $_ -replace "^.+SYSTEMVERILOG_FILE (?<filename>[\\\w_.]+)$", `
+                                    "vlog -sv -work work {$directoryName\`${filename}}" -replace "\\\\", "\" } >> $scriptName
 
 # テストベンチファイルを追加する。
 #$baseName = (Split-Path -Leaf $fileName) -replace "(?<basename>).vhd", '${basename}'
@@ -85,7 +83,7 @@ if ($extension -eq ".vhd") {
 # スクリプトの残りを追加する。
 Write-output @"
 
-vsim -t 1ns -L rtl_work -L work -voptargs="+acc"  TB_$baseName
+vsim -t 1ns -L rtl_work -L work TB_$baseName
 add wave sim:/TB_$baseName/DUV/*
 view structure
 view signals
