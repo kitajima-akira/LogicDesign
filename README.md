@@ -142,3 +142,7 @@ Visual Studio CodeでLogicDesignを開き、タスクの実行 > LogicDesign: Up
 
     git fetch origin
     git reset --hard origin/main
+
+## 使い方
+
+[チュートリアル](doc/tutorial/tutorial.md)
