@@ -34,7 +34,6 @@ LogicDesignの設定で作成したショートカットアイコンからVisual
 ```systemverilog:half_adder.sv
 // half_adder.sv - 半加算器
 
-
 //! 半加算器
 //! 1ビットの加算を行う。
 module half_adder(
