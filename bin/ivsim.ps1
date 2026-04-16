@@ -28,7 +28,7 @@ $moduleName = [System.IO.Path]::GetFileNameWithoutExtension($fileName)
 if ( $moduleName -match '_tb$' ) {
     $moduleName = $moduleName -replace "_tb$", ''
     $fileName = "$moduleName$extension"
-    $directoryName = "."
+    # $directoryName = "."
 }
 # テストベンチモジュールの名前
 $testBenchName = "${moduleName}_tb"
@@ -40,7 +40,7 @@ $defaultTestBenchDirectoryName = "$tbPath"
 $compiledOutput = "$moduleName.out"
 
 # ファイルの存在チェック
-if (-not(Test-Path $fileName)) {
+if (-not(Test-Path (Join-Path $directoryName $fileName))) {
     Write-Output "No input file: $fileName"
     Exit-PSSession
 }
@@ -62,7 +62,14 @@ if (-not(Test-Path (Join-Path $directoryName $testBenchFileName))) {
 
 # 現ディレクトリからの相対パス名に変換する。
 function ConvertTo-RelativePathName ($name) {
-    (Resolve-Path -Path $name -Relative) -replace "^\.\\", ""  
+    if (-not(Test-Path $name)) {
+        $name = Join-Path $directoryName $name
+    }
+    if (Test-Path $name) { 
+        (Resolve-Path -Path $name -Relative) -replace "^\.\\", ""
+     } else {
+        $name
+     }
 }
 
 $fileName = ConvertTo-RelativePathName $fileName
@@ -87,7 +94,7 @@ function Read-ImportFile ($directory, $file, $files) {
 
 $targetFiles += Read-ImportFile $directoryName "import.txt" $targetFiles
 $targetFiles += Read-ImportFile $PWD "import.txt" $targetFiles
-$targetFiles = foreach ($i in $targetFiles) {(Resolve-Path -Path $i -Relative) -replace "^\.\\", ""}
+$targetFiles = foreach ($i in $targetFiles) {if (Test-Path $i) {(Resolve-Path -Path $i -Relative) -replace "^\.\\", ""} else {$i}}
 
 $includeDirectories = if ($directoryName -eq $PWD) {"-y ."} else {"-y . -y " + (Resolve-Path -Path $directoryName -Relative)}
 
