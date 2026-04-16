@@ -67,9 +67,9 @@ function ConvertTo-RelativePathName ($name) {
     }
     if (Test-Path $name) { 
         (Resolve-Path -Path $name -Relative) -replace "^\.\\", ""
-     } else {
+    } else {
         $name
-     }
+    }
 }
 
 $fileName = ConvertTo-RelativePathName $fileName
