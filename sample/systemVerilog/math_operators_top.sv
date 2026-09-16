@@ -1,7 +1,7 @@
-// top_math_operators.sv - 算術演算子回路トップレベル記述
+// math_operators_top.sv - 算術演算子回路トップレベル記述
 
 //! トップレベル記述
-module top_math_operators(
+module math_operators_top(
     input logic[9:0] SW, // スイッチ入力
     output logic[6:0] HEX0_n, // 7セグメントLED出力 (p下位)
     output logic[6:0] HEX1_n, // 7セグメントLED出力 (p上位)

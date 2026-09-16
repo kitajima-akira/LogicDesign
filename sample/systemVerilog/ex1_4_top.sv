@@ -1,7 +1,7 @@
-// top_ex1_4.sv - ex1_4用トップレベル記述
+// ex1_4_top.sv - ex1_4用トップレベル記述
 
 //! トップレベル記述
-module top_ex1_4(
+module ex1_4_top(
     input logic[9:0] SW, //! スイッチ入力
     output logic[6:0] HEX0_n //! 7セグメントLED出力
   );

@@ -1,7 +1,7 @@
-// top_decoder_7seg.sv - チュートリアル用トップレベル記述
+// decoder_7seg_top.sv - チュートリアル用トップレベル記述
 
 //! トップレベル記述
-module top_decoder_7seg(
+module decoder_7seg_top(
     input logic[9:0] SW, //! スイッチ入力
     output logic[6:0] HEX0_n, //! 7セグメントLED出力
     output logic[6:0] HEX1_n //! 7セグメントLED出力

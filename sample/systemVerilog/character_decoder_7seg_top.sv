@@ -1,7 +1,7 @@
-// top_character_decoder_7seg.sv - character_decoder_7seg用トップレベル記述
+// character_decoder_7seg_top.sv - character_decoder_7seg用トップレベル記述
 
 //! トップレベル記述
-module top_character_decoder_7seg(
+module character_decoder_7seg_top(
     input logic[9:0] SW, //! スイッチ入力
     output logic[6:0] HEX0_n, //! 7セグメントLED出力
     output logic[6:0] HEX1_n //! 7セグメントLED出力
