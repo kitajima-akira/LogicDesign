@@ -20,6 +20,7 @@ $PSDefaultParameterValues['Out-File:Encoding'] = 'ascii'
 
 # 元のファイルのディレクトリ
 $directoryName = Split-Path -Path $fileName
+$fileName = Split-Path -Path $fileName -Leaf
 # 元ファイルの拡張子
 $extension = [System.IO.Path]::GetExtension($fileName)
 # テスト対象モジュールの名前
@@ -62,6 +63,9 @@ if (-not(Test-Path (Join-Path $directoryName $testBenchFileName))) {
 
 # 現ディレクトリからの相対パス名に変換する。
 function ConvertTo-RelativePathName ($name) {
+    if ($null -eq $name) {
+        return $null
+    }
     if (-not(Test-Path $name)) {
         $name = Join-Path $directoryName $name
     }
