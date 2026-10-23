@@ -158,3 +158,5 @@ Visual Studio CodeでLogicDesignを開き、タスクの実行 > LogicDesign: Up
 ## 使い方
 
 [チュートリアル](doc/tutorial/tutorial.md)
+
+[LogicDesignでの処理対象ファイル決定の仕組み](doc/import.txt)

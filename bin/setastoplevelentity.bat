@@ -149,9 +149,9 @@ if exist "%3*%2" (
 )
 
 @REM IMPORT_FILEのファイルを登録する。
-set "REGEXP=\%2$"
+set "REGEXP=^^^^[^^^^#].*\%2$"
 if exist %3%IMPORT_FILE% (
-    for /f %%f in ('type %3%IMPORT_FILE% ^| findstr %REGEXP%') do (
+    for /f %%f in ('type %3%IMPORT_FILE% ^| findstr /R %REGEXP%') do (
         setlocal enabledelayedexpansion
         set "TARGET_FILE=%%f"
         echo set_global_assignment -name %1 %3!TARGET_FILE:\=\\!>> %PROJECT_FILE%
