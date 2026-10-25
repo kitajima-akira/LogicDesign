@@ -7,7 +7,6 @@ output_files/
 *.qdf
 transcript
 *.txt
-!import.txt
 !*_tv.txt
 *.vcd
 a.out

@@ -87,9 +87,12 @@ function Read-ImportFile ($directory, $file, $files) {
     if (Test-Path $importFileName) {
         $importFiles = (Get-Content $importFileName) -split "\n"
         foreach ($fileName in $importFiles) {
+            if ($filename -match '^#') {
+                continue;
+            }
             $fileName = ConvertTo-RelativePathName (Join-Path $directory $fileName)
             if (-not($files -contains $fileName)) {
-                $targetFiles += $fileName
+                $targetFiles += " " + $fileName
             }
         }
     }
@@ -97,7 +100,9 @@ function Read-ImportFile ($directory, $file, $files) {
 }
 
 $targetFiles += Read-ImportFile $directoryName "import.txt" $targetFiles
-$targetFiles += Read-ImportFile $PWD "import.txt" $targetFiles
+if (-not($directoryName -eq $PWD)) {
+    $targetFiles += Read-ImportFile $PWD "import.txt" $targetFiles
+}
 $targetFiles = foreach ($i in $targetFiles) {if (Test-Path $i) {(Resolve-Path -Path $i -Relative) -replace "^\.\\", ""} else {$i}}
 
 $includeDirectories = if ($directoryName -eq $PWD) {"-y ."} else {"-y . -y " + (Resolve-Path -Path $directoryName -Relative)}
