@@ -15,6 +15,7 @@ module display_60count_tb#(
 
   // 出力用信号
   logic[6:0] ssl1, ssl0;  //! 7セグメントLEDパターンの出力
+  logic co;  //! 桁上がり
 
   // テスト対象回路 UUT (the Unit Under Test)
   display_60count uut(.*);
@@ -34,8 +35,8 @@ module display_60count_tb#(
     $display("reset");
     $display("| clear");
     $display("| | count");
-    $display("| | | :    ssl1    ssl0");
-    $display("- - - + ------- -------");
+    $display("| | | :    ssl1    ssl0 co");
+    $display("- - - + ------- ------- -");
 
     // 入力信号の初期化
     clear = '0;
@@ -58,8 +59,8 @@ module display_60count_tb#(
   always #CLOCK_PERIOD
   begin
     // 表示
-    $display("%b %b %b : %b %b", reset, clear, count, ssl1, ssl0);
-    $fwrite(fd_d7, "%b %b: %b %b\n", clear, count, ssl1, ssl0);
+    $display("%b %b %b : %b %b %b", reset, clear, count, ssl1, ssl0, co);
+    $fwrite(fd_d7, "%b %b: %b %b %b\n", clear, count, ssl1, ssl0, co);
 end
 
   // 波形生成
